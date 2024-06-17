@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using BlazorApp.Data;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using BlazorApp.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+// Adicionando serviço de Cookie
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICookieService, CookieService>();
 
 var app = builder.Build();
 
